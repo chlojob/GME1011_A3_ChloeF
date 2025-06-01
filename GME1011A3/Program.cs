@@ -46,7 +46,7 @@ namespace GME1011A3
 
             for (int i = 0; i < numBaddies; i++)
             {
-                int roll = rng.Next(2); // Rolls 0 or 1, so a 50/50 chance
+                int roll = rng.Next(2); // Rolls 0 or 1, so a 50/50 coin flip
                 if (roll == 0)
                 {
                     baddies.Add(new Goblin(rng.Next(30, 35), rng.Next(1, 5), rng.Next(1, 10)));
@@ -57,15 +57,16 @@ namespace GME1011A3
                 }
             }
 
-            //this should work even after you make the changes above
             Console.WriteLine("Here are the baddies!!!");
             for (int i = 0; i < baddies.Count; i++)
             {
                 Console.WriteLine(baddies[i]);
             }
+            Thread.Sleep(2000);
             Console.WriteLine("\n\n");
             Console.WriteLine("Let the EPIC battle begin!!!");
             Console.WriteLine("----------------------------");
+            Thread.Sleep(1000);
 
 
             //loop runs as long as there are baddies still alive and the hero is still alive!!
@@ -80,24 +81,24 @@ namespace GME1011A3
 
                 //hero deals damage first
                 Console.WriteLine(hero.GetName() + " is attacking enemy #" + (indexOfEnemy + 1) + " of " + numBaddies + ". Eek, it's a " + baddies[indexOfEnemy].GetType().Name);
-                int heroDamage = hero.DealDamage();  //how much damage?
-                Console.WriteLine("Hero deals " + heroDamage + " heroic damage.");
-                baddies[indexOfEnemy].TakeDamage(heroDamage); //baddie takes the damage
 
+                int heroDamage;
 
+                if (rng.Next(100) < 33 && hero.GetStrength() > 0)
+                {
+                    heroDamage = hero.Stoopid();
+                    Console.WriteLine(hero.GetName() + " goes STOOPID CRAZY and deals " + heroDamage + " damage!");
+                }
+                else
+                {
+                    if (hero.GetStrength() == 0)
+                        Console.WriteLine("Oh no! " + hero.GetName() + " tries to go STOOPID CRAZY, but can't muster up the strength!");
 
+                    heroDamage = hero.DealDamage();
+                    Console.WriteLine("Hero deals " + heroDamage + " heroic damage.");
+                }
 
-                //TODO: The hero doesn't ever use their special attack - but they should. Change the above to 
-                //have a 33% chance that the hero uses their special, and 67% that they use their regular attack.
-                //If the hero doesn't have enough special power to use their special attack, they do their regular 
-                //attack instead - but make a note of it in the output. There's no way for the hero to get more special
-                //power points, but if you want to craft a way for that to happen, that's fine.
-
-
-
-
-                //NOTE to coders - armour affects how much damage goblins take, and skellies take
-                //half damage - remember that when reviewing the output
+                baddies[indexOfEnemy].TakeDamage(heroDamage);
 
                 //did we vanquish the baddie we were battling?
                 if (baddies[indexOfEnemy].isDead())

@@ -46,7 +46,7 @@ namespace GME1011A3
         public void AddStrength() { if (this.strength <= 9) strength++; }
 
         //Special move for the Fighter:
-        public int Berserk()
+        public int Stoopid()
         {
             if (strength > 0)
             {
@@ -56,7 +56,7 @@ namespace GME1011A3
             }
             else
             {
-                return 0; //no strength, no berserk
+                return 0; //no strength, no stoopid crazy
             }
         }
 
