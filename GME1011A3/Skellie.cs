@@ -35,6 +35,13 @@ namespace GME1011A3
             return rng.Next(7, 15);
         }
 
+        public override void Special(Hero target)
+        {
+            int damage = SkellieRattle();
+            Console.WriteLine("Skellie RATTLES and deals " + damage + " damage! Ouch!");
+            target.TakeDamage(damage);
+        }
+
         public override string ToString()
         {
             return "Skellie[" + base.ToString() + "]";

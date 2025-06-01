@@ -34,6 +34,11 @@ namespace GME1011A3
         //default damage is 5
         public virtual int DealDamage() { return 5; }
 
+        public virtual void Special(Hero target)
+        {
+            //
+        }
+
         //is the hero dead?
         public bool isDead() { return _health <= 0; }
 

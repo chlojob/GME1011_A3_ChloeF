@@ -42,7 +42,6 @@ namespace GME1011A3
             return rng.Next(1,_dexterity) + 1; 
         }
 
-
         //Goblin special
         public int GoblinBite()
         {
@@ -51,7 +50,13 @@ namespace GME1011A3
             return _dexterity * rng.Next(1,3);
         }
 
-        
+        public override void Special(Hero target)
+        {
+            int damage = GoblinBite();
+            Console.WriteLine("Goblin BITES and deals " + damage + "damage! Ow!");
+            target.TakeDamage(damage);
+        }
+
         public override string ToString()
         {
             return "Goblin[" + base.ToString() + ", " + _dexterity + "]";
