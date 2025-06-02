@@ -24,16 +24,25 @@ namespace GME1011A3
             _health -= damage / 2;
         }
 
+        public int SlimeGoop()
+        {
+            Console.WriteLine("**gurgling**");
+            Random rng = new Random();
+            return rng.Next(5, 12); 
+        }
+
         public override void Special(Hero target)
         {
-            int slimeDamage = DealDamage();
+            int slimeDamage = SlimeGoop();
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Slime shoots ACID GOOP and deals " + slimeDamage + " damage.");
+            Console.ResetColor();
             target.TakeDamage(slimeDamage);
         }
 
         public override string ToString()
         {
-            return "Slime[" + _health + "," + _armour + "]";
+            return "Slime [Health: " + _health + ", Armour: " + _armour + "]";
         }
     }
 }

@@ -38,13 +38,15 @@ namespace GME1011A3
         public override void Special(Hero target)
         {
             int damage = SkellieRattle();
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Skellie RATTLES and deals " + damage + " damage! Ouch!");
+            Console.ResetColor();
             target.TakeDamage(damage);
         }
 
         public override string ToString()
         {
-            return "Skellie[" + base.ToString() + "]";
+            return "Skellie [Health: " + _health + ", Armour: " + _armour + "]";
         }
     }
 }

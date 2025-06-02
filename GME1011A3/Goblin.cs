@@ -19,12 +19,12 @@ namespace GME1011A3
                 dexterity = 5;
             _dexterity = dexterity;
         }
-      
+
         //goblins can dodge - increased chance if dexterity is high
         public override void TakeDamage(int damage)
         {
             Random rng = new Random();
-            if ((rng.Next(1, 15) < _dexterity) )
+            if ((rng.Next(1, 15) < _dexterity))
             {
                 Console.WriteLine("**Goblin-dodge, sneaky**");
             }
@@ -33,13 +33,14 @@ namespace GME1011A3
                 //Console.WriteLine("Goblin takes damage.");
                 _health -= (damage - _armour);
             }
-             
+
         }
 
         //default damage is based on dexterity
-        public override int DealDamage() {
+        public override int DealDamage()
+        {
             Random rng = new Random();
-            return rng.Next(1,_dexterity) + 1; 
+            return rng.Next(1, _dexterity) + 1;
         }
 
         //Goblin special
@@ -47,19 +48,21 @@ namespace GME1011A3
         {
             Console.WriteLine("**CHOMP**");
             Random rng = new Random();
-            return _dexterity * rng.Next(1,3);
+            return _dexterity * rng.Next(1, 3);
         }
 
         public override void Special(Hero target)
         {
             int damage = GoblinBite();
+            Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("Goblin BITES and deals " + damage + " damage! Ow!");
+            Console.ResetColor();
             target.TakeDamage(damage);
         }
 
         public override string ToString()
         {
-            return "Goblin[" + base.ToString() + ", " + _dexterity + "]";
+            return "Goblin [Health: " + _health + ", Armour: " + _armour + ", Dexterity: " + _dexterity + "]";
         }
     }
 }
