@@ -29,7 +29,7 @@ namespace GME1011A3
         public int GetArmour() { return _armour; }
 
         //armour reduces damage
-        public virtual void TakeDamage(int damage) { _health = (damage - _armour); }
+        public virtual void TakeDamage(int damage) { _health -= Math.Max(damage - _armour, 0); }
 
         //default damage is 5
         public virtual int DealDamage() { return 5; }

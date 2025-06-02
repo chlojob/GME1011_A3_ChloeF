@@ -35,7 +35,7 @@ namespace GME1011A3
             int numAliveBaddies = numBaddies;
 
             Thread.Sleep(1000);
-            Console.WriteLine("1 - Instant");
+            Console.WriteLine("\n1 - Instant");
             Console.WriteLine("2 - Fast");
             Console.WriteLine("3 - Slow");
             Console.WriteLine("4 - Detailed");
@@ -111,28 +111,33 @@ namespace GME1011A3
                 {
                     heroDamage = hero.Stoopid();
                     Console.WriteLine(hero.GetName() + " goes STOOPID CRAZY and deals " + heroDamage + " damage!");
-                    Thread.Sleep(delay);
+                    if (delay > 0)
+                        Thread.Sleep(delay);
                 }
                 else
                 {
                     if (hero.GetStrength() == 0)
                     Console.WriteLine("Oh no! " + hero.GetName() + " tries to go STOOPID CRAZY, but can't muster up the strength!");
-                    Thread.Sleep(delay);
+                    if (delay > 0)
+                        Thread.Sleep(delay);
 
                     heroDamage = hero.DealDamage();
-                    Console.WriteLine("Hero deals " + heroDamage + " heroic damage.");
-                    Thread.Sleep(delay);
+                    Console.WriteLine("Hero deals " + heroDamage + " damage.");
+                    if (delay > 0)
+                        Thread.Sleep(delay);
                 }
 
                 baddies[indexOfEnemy].TakeDamage(heroDamage);
-                Thread.Sleep(delay);
+                if (delay > 0)
+                    Thread.Sleep(delay);
 
                 //did we vanquish the baddie we were battling?
                 if (baddies[indexOfEnemy].isDead())
                 {
                     numAliveBaddies--; //one less baddie to worry about.
-                    Console.WriteLine("Enemy #" + (indexOfEnemy + 1) + " has been dispatched to void.");
-                    Thread.Sleep(delay);
+                    Console.WriteLine("Enemy #" + (indexOfEnemy + 1) + " has been dispatched to the void.");
+                    if (delay > 0)
+                        Thread.Sleep(delay);
                 }
                 else //baddie survived, now attacks the hero
                 {
@@ -142,29 +147,34 @@ namespace GME1011A3
                     {
                         Console.WriteLine("Enemy #" + (indexOfEnemy + 1) + " attempts a SPECIAL!");
                         baddies[indexOfEnemy].Special(hero);
-                        Thread.Sleep(delay);
+                        if (delay > 0)
+                            Thread.Sleep(delay);
                     }
                     else
                     {
                         int baddieDamage = baddies[indexOfEnemy].DealDamage();
                         Console.WriteLine("Enemy #" + (indexOfEnemy + 1) + " deals " + baddieDamage + " damage!");
                         hero.TakeDamage(baddieDamage);
-                        Thread.Sleep(delay);
+                        if (delay > 0)
+                            Thread.Sleep(delay);
                     }
 
                     //let's look in on our hero.
                     Console.WriteLine(hero.GetName() + " has " + hero.GetHealth() + " health remaining.");
-                    Thread.Sleep(500);
+                    if (delay > 0)
+                        Thread.Sleep(delay);
 
                     if (hero.isDead()) //did the hero die
                     {
-                        Thread.Sleep(delay);
+                        if (delay > 0)
+                            Thread.Sleep(delay);
                         Console.WriteLine(hero.GetName() + " has died. All hope is lost.");
                     }
 
                 }
                 Console.WriteLine("-----------------------------------------");
-                Thread.Sleep(delay);
+                if (delay > 0)
+                    Thread.Sleep(delay);
             }
             //if we made it this far, the hero is victorious! (that's what the message says.
             if (!hero.isDead())

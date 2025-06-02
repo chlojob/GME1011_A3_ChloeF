@@ -53,7 +53,7 @@ namespace GME1011A3
         public override void Special(Hero target)
         {
             int damage = GoblinBite();
-            Console.WriteLine("Goblin BITES and deals " + damage + "damage! Ow!");
+            Console.WriteLine("Goblin BITES and deals " + damage + " damage! Ow!");
             target.TakeDamage(damage);
         }
 
