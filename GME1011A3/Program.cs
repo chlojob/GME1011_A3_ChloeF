@@ -16,6 +16,7 @@ namespace GME1011A3
                 //Epic battle goes here :)
                 Random rng = new Random();
 
+                // Checks system time, sends different message depending
                 DateTime now = DateTime.Now;
                 int hour = now.Hour;
 
