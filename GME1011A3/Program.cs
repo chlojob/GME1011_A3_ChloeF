@@ -166,56 +166,63 @@ namespace GME1011A3
                     {
                         numAliveBaddies--; //one less baddie to worry about.
                         Console.WriteLine("Enemy #" + (indexOfEnemy + 1) + " has been dispatched to the void.");
+                        Console.WriteLine("-----------------------------------------");
                         if (delay > 0)
                             Thread.Sleep(delay);
                     }
                     else //baddie survived, now attacks the hero
                     {
-                        int rollBadSpec = rng.Next(100); // 0-99
-
-                        if (rollBadSpec < 33) // 33% chance for special attack
+                        if (!hero.isDead())
                         {
-                            Console.WriteLine("Enemy #" + (indexOfEnemy + 1) + " attempts a SPECIAL!");
-                            baddies[indexOfEnemy].Special(hero);
+                            int rollBadSpec = rng.Next(100); // 0-99
+
+                            if (rollBadSpec < 33) // 33% chance for special attack
+                            {
+                                Console.WriteLine("Enemy #" + (indexOfEnemy + 1) + " attempts a SPECIAL!");
+                                baddies[indexOfEnemy].Special(hero);
+                                if (delay > 0)
+                                    Thread.Sleep(delay);
+                            }
+                            else
+                            {
+                                int baddieDamage = baddies[indexOfEnemy].DealDamage();
+                                Console.WriteLine("Enemy #" + (indexOfEnemy + 1) + " deals " + baddieDamage + " damage!");
+                                hero.TakeDamage(baddieDamage);
+                                if (delay > 0)
+                                    Thread.Sleep(delay);
+                            }
+
+                            //let's look in on our hero.
+                            Console.WriteLine(hero.GetName() + " has " + hero.GetHealth() + " health remaining.");
                             if (delay > 0)
                                 Thread.Sleep(delay);
-                        }
-                        else
-                        {
-                            int baddieDamage = baddies[indexOfEnemy].DealDamage();
-                            Console.WriteLine("Enemy #" + (indexOfEnemy + 1) + " deals " + baddieDamage + " damage!");
-                            hero.TakeDamage(baddieDamage);
-                            if (delay > 0)
-                                Thread.Sleep(delay);
-                        }
 
-                        //let's look in on our hero.
-                        Console.WriteLine(hero.GetName() + " has " + hero.GetHealth() + " health remaining.");
+                            if (hero.isDead()) //did the hero die
+                            {
+                                if (delay > 0)
+                                    Thread.Sleep(delay);
+                                Console.BackgroundColor = ConsoleColor.Red;
+                                Console.ForegroundColor = ConsoleColor.Black;
+                                Console.Write(hero.GetName() + " has died. All hope is lost.");
+                                Console.ResetColor();
+                                Console.WriteLine();
+                            }
+
+                        }
+                        Console.WriteLine("-----------------------------------------");
                         if (delay > 0)
                             Thread.Sleep(delay);
-
-                        if (hero.isDead()) //did the hero die
-                        {
-                            if (delay > 0)
-                                Thread.Sleep(delay);
-                            Console.BackgroundColor = ConsoleColor.Red;
-                            Console.ForegroundColor = ConsoleColor.Black;
-                            Console.Write(hero.GetName() + " has died. All hope is lost.");
-                            Console.ResetColor();
-                            Console.WriteLine();
-                        }
-
                     }
-                    Console.WriteLine("-----------------------------------------");
-                    if (delay > 0)
-                        Thread.Sleep(delay);
                 }
+
                 //if we made it this far, the hero is victorious! (that's what the message says.
                 if (!hero.isDead())
+                {
                     Console.BackgroundColor = ConsoleColor.Green;
-                Console.ForegroundColor = ConsoleColor.Black;
-                Console.Write("\nAll enemies have been dispatched!! " + hero.GetName() + " is victorious, with " + hero.GetHealth() + " to spare!");
-                Console.ResetColor();
+                    Console.ForegroundColor = ConsoleColor.Black;
+                    Console.Write("\nAll enemies have been dispatched!! " + hero.GetName() + " is victorious, with " + hero.GetHealth() + " health to spare!");
+                    Console.ResetColor();
+                }
 
                 // Play again? loop prompt
                 Console.WriteLine();
@@ -230,10 +237,8 @@ namespace GME1011A3
                 {
                     Console.Clear();
                 }
-
             }
 
         }
-
     }
 }
