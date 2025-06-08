@@ -12,16 +12,17 @@ namespace GME1011A3
         private static Random rng = new Random();
         public Slime(int health, int armour) : base(health, armour)
         {
+            _armour = 0; // Slimes are goop. No armour!
         }
 
         public override int DealDamage()
         {
-            return rng.Next(2, 5);
+            return rng.Next(2, 5); // 2-4 damage normally
         }
 
         public override void TakeDamage(int damage)
         {
-            _health -= damage / 2;
+            _health -= (int)(damage * 1.1); // goop absorbs more damage
         }
 
         public int SlimeGoop()
@@ -30,7 +31,7 @@ namespace GME1011A3
             Random rng = new Random();
             return rng.Next(5, 12); 
         }
-
+                                                        // Slime special
         public override void Special(Hero target)
         {
             int slimeDamage = SlimeGoop();
@@ -42,7 +43,7 @@ namespace GME1011A3
 
         public override string ToString()
         {
-            return "Slime [Health: " + _health + ", Armour: " + _armour + "]";
+            return "Slime [Health: " + _health + "]";
         }
     }
 }

@@ -102,7 +102,7 @@ namespace GME1011A3
                     }
                     else
                     {
-                        baddies.Add(new Slime(rng.Next(20, 26), 1));
+                        baddies.Add(new Slime(rng.Next(20, 26), 0));
                     }
                 }
 

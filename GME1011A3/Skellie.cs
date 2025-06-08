@@ -20,7 +20,7 @@ namespace GME1011A3
             _health -= damage / 2;
         }
 
-        //Skelles do 2-8 damage by default
+        //Skelles do 2-7 damage by default
         public override int DealDamage()
         {
             Random rng = new Random();
