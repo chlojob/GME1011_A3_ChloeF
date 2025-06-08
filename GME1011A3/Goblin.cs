@@ -9,6 +9,8 @@ namespace GME1011A3
 {
     internal class Goblin : Minion
     {
+        private static Random rng = new Random();
+
         //Goblins have dexterity that helps them to dodge and attack
         private int _dexterity;
 
@@ -23,7 +25,6 @@ namespace GME1011A3
         //goblins can dodge - increased chance if dexterity is high
         public override void TakeDamage(int damage)
         {
-            Random rng = new Random();
             if ((rng.Next(1, 15) < _dexterity))
             {
                 Console.WriteLine("**Goblin-dodge, sneaky**");
@@ -39,7 +40,6 @@ namespace GME1011A3
         //default damage is based on dexterity
         public override int DealDamage()
         {
-            Random rng = new Random();
             return rng.Next(1, _dexterity) + 1;
         }
 
@@ -47,7 +47,6 @@ namespace GME1011A3
         public int GoblinBite()
         {
             Console.WriteLine("**CHOMP**");
-            Random rng = new Random();
             return _dexterity * rng.Next(1, 3);
         }
 

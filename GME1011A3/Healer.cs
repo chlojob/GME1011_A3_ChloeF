@@ -8,6 +8,8 @@ namespace GME1011A3
 {
     internal class Healer : Hero
     {
+        private static Random rng = new Random();
+
         private int dexterity;
 
         //zero-argument constructor. : base( ) will call the superclass constructor
@@ -36,7 +38,6 @@ namespace GME1011A3
         //There are lots of ways to do this.
         public override int DealDamage()
         {
-            Random rng = new Random();
             return rng.Next(3, 9);
         }
 
@@ -61,7 +62,6 @@ namespace GME1011A3
             if(dexterity > 0)
             {
                 dexterity--;
-                Random rng = new Random();
                 return rng.Next(20, 35); //return this much damage in Main()
             }
             else

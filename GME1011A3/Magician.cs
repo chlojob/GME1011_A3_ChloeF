@@ -8,6 +8,8 @@ namespace GME1011A3
 {
     internal class Magician : Hero
     {
+        private static Random rng = new Random();
+
         private int mana;
 
         //zero-argument constructor. : base( ) will call the superclass constructor
@@ -36,7 +38,6 @@ namespace GME1011A3
         //There are lots of ways to do this.
         public override int DealDamage()
         {
-            Random rng = new Random();
             return rng.Next(1, 15);
         }
 
@@ -61,7 +62,6 @@ namespace GME1011A3
             if (mana > 1)
             {
                 mana -= 2;
-                Random rng = new Random();
                 return rng.Next(80, 100); //return this much health to apply to party member in Main()
             }
             else

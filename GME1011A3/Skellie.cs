@@ -8,6 +8,8 @@ namespace GME1011A3
 {
     internal class Skellie : Minion
     {
+        private static Random rng = new Random();
+
         //Constructor - Skellies don't have armour, set it to 0
         public Skellie(int health, int armour) : base(health, armour)
         {
@@ -20,18 +22,16 @@ namespace GME1011A3
             _health -= damage / 2;
         }
 
-        //Skelles do 2-7 damage by default
+        //Skelles do 2-8 damage by default
         public override int DealDamage()
         {
-            Random rng = new Random();
-            return rng.Next(2, 8);
+            return rng.Next(2, 9);
         }
 
         //Skellie special.
         public int SkellieRattle()
         {
             Console.WriteLine("**spooky rattling**");
-            Random rng = new Random();
             return rng.Next(7, 15);
         }
 

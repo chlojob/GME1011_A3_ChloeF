@@ -8,6 +8,8 @@ namespace GME1011A3
 {
     internal class Fighter : Hero
     {
+        private static Random rng = new Random();
+
         private int strength;
 
         //zero-argument constructor. : base( ) will call the superclass constructor
@@ -31,7 +33,6 @@ namespace GME1011A3
         //There are lots of ways to do this.
         public override int DealDamage()
         {
-            Random rng = new Random();
             return rng.Next(8, 15);
         }
 
@@ -51,7 +52,6 @@ namespace GME1011A3
             if (strength > 0)
             {
                 strength--;
-                Random rng = new Random();
                 return rng.Next(10, 20) * strength; //return this damage to deal to an enemy in Main()
             }
             else
