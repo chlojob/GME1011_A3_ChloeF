@@ -62,20 +62,21 @@ namespace GME1011A3
                 Console.WriteLine("3 - Slow");
                 Console.WriteLine("4 - Detailed");
                 Console.Write("Set your game speed: ");
-                int gameSpeed = int.Parse(Console.ReadLine());
+                int gameSpeed = int.Parse(Console.ReadLine()); // Prompts user for game speed,
+                                                               // sets the thread delay amount used across project
 
                 int delay;
 
                 if (gameSpeed == 1)
                     delay = 0;
                 else if (gameSpeed == 2)
-                    delay = 30;
+                    delay = 50;
                 else if (gameSpeed == 3)
-                    delay = 1000;
+                    delay = 800;
                 else if (gameSpeed == 4)
                     delay = 2000;
                 else
-                    delay = 500;
+                    delay = 800;
 
                 Thread.Sleep(1000);
                 Console.Write("\nWonderful. ");
@@ -216,6 +217,7 @@ namespace GME1011A3
                 Console.Write("\nAll enemies have been dispatched!! " + hero.GetName() + " is victorious, with " + hero.GetHealth() + " to spare!");
                 Console.ResetColor();
 
+                // Play again? loop prompt
                 Console.WriteLine();
                 Console.WriteLine("\nPlay again? (Y/N)");
                 string response = Console.ReadLine().Trim().ToLower();

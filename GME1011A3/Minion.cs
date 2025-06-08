@@ -36,7 +36,6 @@ namespace GME1011A3
 
         public virtual void Special(Hero target)
         {
-            //
         }
 
         //is the hero dead?

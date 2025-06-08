@@ -46,7 +46,7 @@ namespace GME1011A3
 
         public override string ToString()
         {
-            return "Skellie [Health: " + _health + ", Armour: " + _armour + "]";
+            return "Skellie [Health: " + _health + "]";
         }
     }
 }
